@@ -43,7 +43,14 @@ body {
     grid-gap: 30px;
     grid-template-columns: 1fr 1fr 1fr; */
   }
-  
+  .danger-text { 
+      color: lightcoral;
+      font-weight: 600;
+  }
+  .succes-text {
+      color: lightgreen;
+      font-weight: 600;
+  }
   .examples-title {
     font-size: 1.3em;
     margin-bottom: 0;

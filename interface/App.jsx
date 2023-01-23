@@ -13,9 +13,7 @@ import "@connect2ic/core/style.css"
 /*
  * Import canister definitions like this:
  */
-import * as dao from "../.dfx/local/canisters/dao"
-import * as daoLedger from "../.dfx/local/canisters/daoLedger"
-
+import * as dao from "../.dfx/ic/canisters/dao"
 /*
  * Some examples to get you started
  */
@@ -31,7 +29,7 @@ function App() {
       </div>
       <ConnectDialog />
 
-      <p className="examples-title">Examples</p>
+      <p className="examples-title">BBDAO</p>
       <div className="examples">
         <Proposals />
         <Profile />
@@ -44,7 +42,6 @@ function App() {
 const client = createClient({
   canisters: {
     dao,
-    daoLedger
   },
   providers: defaultProviders,
   globalProviderConfig: {

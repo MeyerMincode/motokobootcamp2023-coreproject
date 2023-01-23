@@ -8,7 +8,9 @@ const Proposals = () => {
   const [dao] = useCanister("dao")
   const [proposals, setProposals] = useState(null)
   const [newMessage, setNewMessage] = useState("")
-  const [voted, setVoted] = useState(false)
+  const [deleteState, setDeleteState] = useState(null)
+  const [voteResState, setVoteResState] = useState(null)
+  const [addProposalState, setAddProposalState] = useState(null)
 
   const refreshCounter = async () => {
     const getProposals = await dao.list_all_proposals()
@@ -22,9 +24,11 @@ const Proposals = () => {
   }
 
   const addProposal = async () => {
-    await dao.create_proposal(newMessage)
+    const addProposalRes = await dao.create_proposal(newMessage)
+    setAddProposalState(addProposalRes)
+
+    console.log(addProposalState,'add proposal')
     await refreshCounter()
-    console.log('add proposal')
   }
 
   const handleChange = (event) => {
@@ -32,12 +36,19 @@ const Proposals = () => {
   }
 
   const deleteProposal = async (id) => {
-    await dao.delete_proposal(id)
+    
+    const deleteRes = await dao.delete_proposal(id)
+    console.log(deleteRes, 'delete');
+    setDeleteState(deleteRes)
+
     await refreshCounter()
   }
 
   const voteProposal = async (id) => {
-    await dao.vote(id, true)
+    const voteRes = await dao.vote(id, true)
+    console.log(voteRes, 'vote res')
+    setVoteResState(voteRes)
+
     await refreshCounter()
   }
 
@@ -63,6 +74,16 @@ const Proposals = () => {
         onChange={handleChange}
         value={newMessage}
       />
+       <p className="danger-text">
+              {
+                addProposalState && addProposalState.error
+              }
+        </p>
+        <p className="succes-text">
+              {
+                addProposalState && addProposalState.ok
+              }
+        </p>
       <button className="connect-button" onClick={addProposal}>
         AddProposal
       </button>
@@ -88,6 +109,26 @@ const Proposals = () => {
               >
                 VOTE
               </button>
+              <p className="danger-text">
+              {
+                deleteState && deleteState.error
+              }
+              </p>
+                  {
+                    voteResState && voteResState.ok && <p className="succes-text">
+                                {
+                                  voteResState.ok
+                                }
+                    </p>      
+                  }
+                  {
+                    voteResState && voteResState.error && <p className="danger-text">
+                                {
+                                  voteResState.error
+                                }
+                    </p>      
+                  }
+              
             </li>
           )
         })}
