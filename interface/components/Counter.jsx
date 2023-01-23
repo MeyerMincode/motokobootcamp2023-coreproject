@@ -44,9 +44,9 @@ const Proposals = () => {
     await refreshCounter()
   }
 
-  const voteProposal = async (id) => {
-    const voteRes = await dao.vote(id, true)
-    console.log(voteRes, 'vote res')
+  const voteProposal = async (id, voteType) => {
+    const voteRes = await dao.vote(id, voteType)
+    console.log(voteRes, id, voteType, 'vote')
     setVoteResState(voteRes)
 
     await refreshCounter()
@@ -105,9 +105,15 @@ const Proposals = () => {
               </p>
               <button
                 className="demo-button"
-                onClick={() => voteProposal(proposal.id)}
+                onClick={() => voteProposal(proposal.id, true)}
               >
-                VOTE
+                UPVOTE
+              </button>
+              <button
+                className="demo-button"
+                onClick={() => voteProposal(proposal.id, false)}
+              >
+                DownVOTE
               </button>
               <p className="danger-text">
               {
