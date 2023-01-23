@@ -66,14 +66,20 @@ const Proposals = () => {
 
   return (
     <div className="example">
-      <label htmlFor="proposal">Proposal</label>
+      <div className="form__group field">
       <input
         type="text"
         id="proposal"
         name="proposal"
+        className="form__field"
+        placeholder="Proposal Title"
         onChange={handleChange}
         value={newMessage}
       />
+            <label className="form__label" htmlFor="proposal">Proposal</label>
+
+      </div>
+      
        <p className="danger-text">
               {
                 addProposalState && addProposalState.error
@@ -91,30 +97,35 @@ const Proposals = () => {
       <ul>
         {proposals?.map((proposal) => {
           return (
-            <li key={proposal.motion}>
-              {proposal.motion}{" "}
+            <li className="card-proposal" key={proposal.motion}>
+              <h3>{proposal.motion}</h3>{" "}
+              {Number(proposal.upVotes - proposal.downVotes)> 100 && <span className="passed">V</span>}
+
               <button
                 className="delete-btn"
                 onClick={() => deleteProposal(proposal.id)}
               >
-                Delete
+                X
               </button>
               <p>
                 VOTES:{" "}
                 <span>{Number(proposal.upVotes)}</span>
               </p>
+              <div className="cta">
               <button
                 className="demo-button"
                 onClick={() => voteProposal(proposal.id, true)}
               >
-                UPVOTE
+                YES
               </button>
               <button
-                className="demo-button"
+                className="demo-button no "
                 onClick={() => voteProposal(proposal.id, false)}
               >
-                DownVOTE
+                NO!!
               </button>
+              </div>
+
               <p className="danger-text">
               {
                 deleteState && deleteState.error

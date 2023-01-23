@@ -75,7 +75,7 @@ body {
   }
   
   .demo-button {
-    background: #a02480;
+    background: #03C988;
     padding: 0 1.3em;
     margin-top: 1em;
     border-radius: 60px;
@@ -85,6 +85,9 @@ body {
     border: 0;
     cursor: pointer;
     color: white;
+  }
+  .demo-button.no {
+    background: #FF0032;
   }
   
   .demo-button:active {
@@ -108,16 +111,114 @@ body {
   }
   ul {
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
     list-style: none;
   }
   li {
-    border: 5px solid saddlebrown;
+    border: 2.5px solid #9e9e9e;
     padding: 0.75em;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    position: relative;
+  }
+  h3 {
+      color: seagreen;
+      margin-bottom: 1.5em;
+      padding-bottom: .5em;
+      border-bottom: 2px dashed #ddd;
+  }
+  .cta {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
   }
   .delete-btn {
-    background-color: lightcoral;
+    background-color: #F55050;
+    position: absolute;
+    right: 3%;
+    color: white;
   }
+  .passed {
+      width: 38px;
+      height: 38px;
+      background-color: #03C988;
+      color: white;
+      border-radius: 50%;
+      font-weight: 800;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2.25rem;
+      left: -7px;
+      top: -14px;
+  }
+
+  /* //form */
+
+  .form__group {
+    position: relative;
+    padding: 15px 0 0;
+    margin-top: 10px;
+    width: 50%;
+  }
+  
+  .form__field {
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid #9b9b9b;
+    outline: 0;
+    font-size: 1.3rem;
+    color: #333;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+  }
+  .form__field::placeholder {
+    color: transparent;
+  }
+  .form__field:placeholder-shown ~ .form__label {
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
+  }
+  
+  .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #9b9b9b;
+  }
+  
+  .form__field:focus {
+    padding-bottom: 6px;
+    font-weight: 700;
+    border-width: 3px;
+    border-image: linear-gradient(to right, #11998e, #38ef7d);
+    border-image-slice: 1;
+  }
+  .form__field:focus ~ .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #11998e;
+    font-weight: 700;
+  }
+  
+  /* reset input */
+  .form__field:required, .form__field:invalid {
+    box-shadow: none;
+  }
+  
+
   
   @keyframes pulse {
     0% {

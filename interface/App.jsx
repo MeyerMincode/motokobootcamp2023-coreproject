@@ -17,7 +17,7 @@ import * as dao from "../.dfx/ic/canisters/dao"
 /*
  * Some examples to get you started
  */
-import { Proposals } from "./components/Counter"
+import { Proposals } from "./components/Proposals"
 import { Transfer } from "./components/Transfer"
 import { Profile } from "./components/Profile"
 
@@ -29,7 +29,7 @@ function App() {
       </div>
       <ConnectDialog />
 
-      <p className="examples-title">BBDAO</p>
+      <h1 className="examples-title">Lets fkin build DAO</h1>
       <div className="examples">
         <Proposals />
         <Profile />
